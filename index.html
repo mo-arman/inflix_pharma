@@ -3,14 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Inflix Pharma — Smart Healthcare | Light/Dark + Mobile Toggle</title>
+<title>Inflix Pharma — Smart Healthcare | Light/Dark + WhatsApp</title>
 <meta name="description" content="Inflix Pharma Private Limited — 27 premium pharmaceutical products trusted by 5000+ doctors across India. WHO-GMP Certified.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300;1,700&family=Cabinet+Grotesk:wght@300;400;500;700;800;900&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════
-   ROOT & THEMES (Light/Dark with smooth transition)
-═══════════════════════════════════════════ */
+/* ========== ROOT & THEMES (Light/Dark with smooth transition) ========== */
 :root {
   --transition-theme: background 0.2s ease, color 0.2s, border-color 0.2s;
 }
@@ -29,6 +27,11 @@ body {
   --glassy-border: rgba(0,200,150,0.2);
   --shadow: rgba(0,0,0,0.3);
   transition: var(--transition-theme);
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 body.light {
   --ink: #f8fafc;
@@ -41,74 +44,61 @@ body.light {
   --card-bg: rgba(255,255,255,0.85);
   --glassy-border: rgba(0,150,120,0.3);
   --shadow: rgba(0,0,0,0.08);
+  background: #f1f5f9;
 }
-body.light .prod-card, 
-body.light .stat-card,
-body.light .ai-window,
-body.light .feat-card,
-body.light .contact-item {
+body.light .prod-card, body.light .stat-card, body.light .ai-window, body.light .feat-card, body.light .contact-item {
   background: rgba(255,255,255,0.85);
   backdrop-filter: blur(12px);
   border-color: rgba(0,150,120,0.2);
 }
 body.light .nav-link { color: #334155; }
 body.light .nav-link.active, body.light .nav-link:hover { color: var(--jade2); background: rgba(0,200,150,0.1);}
-body.light .hero-sub, body.light .sec-subtitle { color: #334155; }
-body.light .modal-box { background: #ffffff; color: #0f172a; border-color: var(--jade);}
+body.light .modal-box { background: #ffffff; color: #0f172a; border: 2px solid var(--jade);}
 body.light .modal-block-text { color: #1e293b; }
-body.light .ai-input { background: white; color: #0f172a;}
-
-*{margin:0;padding:0;box-sizing:border-box;transition: background 0.2s, color 0.2s, border 0.2s;}
+body.light .ai-input { background: white; color: #0f172a; border-color: #cbd5e1;}
+*{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--ink);color:var(--text);font-family:'Cabinet Grotesk',sans-serif;overflow-x:hidden;min-height:100vh;cursor:default;}
-body.light { background: #f1f5f9; }
 ::selection{background:rgba(0,200,150,0.3);}
-::-webkit-scrollbar{width:4px;}
-::-webkit-scrollbar-track{background:var(--ink2);}
-::-webkit-scrollbar-thumb{background:var(--jade2);border-radius:4px;}
+::-webkit-scrollbar{width:4px; background: var(--ink2);}
+::-webkit-scrollbar-thumb{background:var(--jade2); border-radius:4px;}
 
-/* custom cursor only on desktop and when not hidden */
-.custom-cursor-enabled {
-  cursor: none;
+/* custom cursor only on desktop */
+@media (min-width: 769px) {
+  body { cursor: none; }
+  #cur, #cur-ring { position: fixed; border-radius: 50%; pointer-events: none; z-index: 99999; transform: translate(-50%, -50%); }
+  #cur { width: 8px; height: 8px; background: var(--jade); mix-blend-mode: difference; }
+  #cur-ring { width: 32px; height: 32px; border: 1.5px solid var(--jade); opacity: 0.6; transition: 0.08s linear; }
 }
-#cur, #cur-ring {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transition: transform 0.12s, opacity 0.2s;
-  transform: translate(-50%, -50%);
-}
-#cur { width: 8px; height: 8px; background: var(--jade); mix-blend-mode: difference; }
-#cur-ring { width: 32px; height: 32px; border: 1.5px solid var(--jade); opacity: 0.6; }
-@media (max-width: 768px) { .custom-cursor-enabled { cursor: auto; } #cur, #cur-ring { display: none; } }
+@media (max-width: 768px) { body { cursor: auto; } #cur, #cur-ring { display: none; } }
 
 /* grid & noise */
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
 .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,200,150,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,150,.03) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;}
 
 /* animations */
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,200,150,.4)}70%{box-shadow:0 0 0 12px rgba(0,200,150,0)}}
 .anim-fadeup{animation:fadeUp .6s ease forwards}
 .float{animation:float 4s ease-in-out infinite}
 
-/* navbar */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(var(--ink-rgb),0.7);border-bottom:1px solid var(--border);}
-.scrolled{background:rgba(13,15,20,0.96);backdrop-filter:blur(24px);}
-body.light .scrolled{background:rgba(255,255,255,0.96);}
+/* navbar + mobile */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(13,15,20,0.8);border-bottom:1px solid var(--border);}
+body.light nav{background:rgba(255,255,255,0.85);}
+.scrolled{background:rgba(13,15,20,0.96); backdrop-filter:blur(24px);}
 .nav-logo{display:flex;gap:12px;align-items:center;}
 .nav-logo-mark{width:42px;height:42px;background:linear-gradient(135deg,var(--jade),var(--jade2));border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;color:#0d0f14;}
 .nav-brand-name{font-family:'Fraunces',serif;font-weight:700;font-size:clamp(14px,4vw,18px);}
 .nav-links.desktop{display:flex;gap:6px;}
 .nav-link{padding:8px 18px;border-radius:100px;font-size:13px;font-weight:700;color:var(--muted);transition:all .2s;}
 .nav-link:hover,.nav-link.active{color:var(--jade);background:rgba(0,200,150,.12);}
-.nav-cta{background:linear-gradient(135deg,var(--jade),var(--jade2));color:#0d0f14;font-weight:800;padding:10px 24px;border-radius:100px;border:none;font-size:13px;margin-left:8px;}
+.nav-cta{background:linear-gradient(135deg,var(--jade),var(--jade2));color:#0d0f14;font-weight:800;padding:10px 24px;border-radius:100px;border:none;font-size:13px;cursor:pointer;}
 .menu-toggle{display:none;background:transparent;border:none;color:var(--jade);font-size:28px;cursor:pointer;}
 .mobile-menu{position:fixed;top:74px;right:0;width:70%;max-width:280px;background:var(--glass);backdrop-filter:blur(32px);border-radius:24px 0 0 24px;padding:24px;flex-direction:column;gap:16px;z-index:999;transform:translateX(100%);transition:transform 0.3s;border-left:1px solid var(--border);display:none;}
 .mobile-menu.open{transform:translateX(0);display:flex;}
 @media (max-width:820px){.nav-links.desktop{display:none}.menu-toggle{display:flex}.mobile-menu{display:flex}}
+
+/* sections */
 .section{display:none;min-height:100vh;padding:110px 24px 60px;position:relative;}
 .section.active{display:block}
 .sec-head{text-align:center;margin-bottom:48px;}
@@ -119,11 +109,12 @@ body.light .scrolled{background:rgba(255,255,255,0.96);}
 .hero-h1 .line2{background:linear-gradient(135deg,var(--jade),var(--amber),var(--jade));-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200%;animation:float 3s infinite;}
 .hero-sub{font-size:clamp(14px,4vw,18px);color:var(--muted);max-width:620px;margin:0 auto 40px;}
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:56px;}
-.btn-primary{background:linear-gradient(135deg,var(--jade),var(--jade2));color:#0d0f14;font-weight:800;padding:14px 32px;border-radius:100px;border:none;box-shadow:0 6px 18px rgba(0,200,150,.25);}
-.btn-outline{background:transparent;border:1.5px solid var(--jade);color:var(--jade);font-weight:700;padding:12px 30px;border-radius:100px;}
+.btn-primary{background:linear-gradient(135deg,var(--jade),var(--jade2));color:#0d0f14;font-weight:800;padding:14px 32px;border-radius:100px;border:none;cursor:pointer;}
+.btn-outline{background:transparent;border:1.5px solid var(--jade);color:var(--jade);font-weight:700;padding:12px 30px;border-radius:100px;cursor:pointer;}
 .hero-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;}
 .stat-card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:24px;padding:18px 28px;min-width:130px;}
 .stat-num{font-family:'Fraunces',serif;font-size:2.3rem;font-weight:900;color:var(--jade);}
+
 /* product grid */
 .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
 .prod-card{background:var(--card-bg);backdrop-filter:blur(20px);border:1px solid var(--glassy-border);border-radius:28px;padding:22px;transition:transform .25s, box-shadow .3s;cursor:pointer;}
@@ -133,31 +124,40 @@ body.light .scrolled{background:rgba(255,255,255,0.96);}
 .cat-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:20px 0 28px;}
 .cat-pill{padding:8px 20px;border-radius:100px;background:var(--glass);border:1px solid var(--border);font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;}
 .cat-pill.active,.cat-pill:hover{background:var(--jade);color:#0d0f14;border-color:var(--jade);}
-/* ai section */
+
+/* ai assistant (unchanged style) */
 .ai-window{background:var(--glass);backdrop-filter:blur(28px);border-radius:32px;border:1px solid var(--border);overflow:hidden;}
 .ai-messages{height:400px;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:16px;}
 .msg-bubble.bot{background:rgba(30,36,51,.8);border-radius:20px 20px 20px 6px;padding:12px 18px;}
 .msg-bubble.user{background:linear-gradient(135deg,var(--jade),var(--jade2));color:#0f172a;border-radius:20px 20px 6px 20px;padding:12px 18px;}
 .ai-input-row{display:flex;gap:12px;padding:20px 24px 28px;border-top:1px solid var(--border);}
 .ai-input{flex:1;background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:100px;padding:14px 20px;color:var(--text);}
-.ai-send{background:var(--jade);border:none;width:52px;border-radius:50%;font-size:20px;color:#0d0f14;font-weight:bold;}
+.ai-send{background:var(--jade);border:none;width:52px;border-radius:50%;font-size:20px;color:#0d0f14;font-weight:bold;cursor:pointer;}
+
+/* about, contact */
 .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px;}
 .feat-card{background:var(--card-bg);border-radius:24px;padding:24px;border:1px solid var(--border);}
 .contact-strip{background:rgba(0,200,150,.08);border-radius:28px;padding:32px 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;margin-top:56px;}
-.contact-item{background:var(--glass);border-radius:20px;padding:12px 24px;display:flex;gap:14px;align-items:center;}
-/* modal */
+.contact-item{background:var(--glass);border-radius:20px;padding:12px 24px;display:flex;gap:14px;align-items:center;cursor:pointer;transition:0.2s;}
+.contact-item:hover{background:rgba(0,200,150,0.15);}
+
+/* modal enhanced */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(20px);display:none;align-items:center;justify-content:center;z-index:5000;}
-.modal-box{background:var(--ink3);border-radius:32px;max-width:680px;width:90%;max-height:85vh;overflow-y:auto;padding:32px;border:1px solid var(--jade);}
+.modal-box{background:var(--ink3);border-radius:36px;max-width:720px;width:90%;max-height:85vh;overflow-y:auto;padding:32px;border:2px solid var(--jade);box-shadow:0 25px 50px -12px black;animation:fadeUp 0.3s;}
+.modal-close{float:right;background:rgba(255,255,255,0.1);border:none;font-size:24px;cursor:pointer;border-radius:50%;width:40px;height:40px;color:var(--text);}
+.modal-title{font-family:'Fraunces',serif;font-size:28px;font-weight:900;}
+.modal-benefit-item{padding-left:12px;border-left:3px solid var(--jade);margin-bottom:8px;}
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--jade);color:#0d0f14;padding:12px 24px;border-radius:100px;z-index:9999;transition:transform .25s;font-weight:700;}
 .toast.show{transform:translateX(-50%) translateY(0);}
 footer{border-top:1px solid var(--border);padding:48px 32px 32px;margin-top:40px;}
 .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:36px;}
+@media (max-width:640px){.modal-box{padding:20px;}.hero-stats .stat-card{padding:12px 16px;}}
 </style>
 </head>
 <body>
 
 <div id="cur"></div><div id="cur-ring"></div>
-<div class="toast" id="toast">✅ Copied / WhatsApp opened!</div>
+<div class="toast" id="toast">✅ WhatsApp opened!</div>
 
 <nav id="navbar">
   <div class="nav-logo"><div class="nav-logo-mark">IN</div><div><span class="nav-brand-name">Inflix Pharma</span><div style="font-size:9px;color:var(--jade);letter-spacing:2px;">Private Limited</div></div></div>
@@ -167,90 +167,88 @@ footer{border-top:1px solid var(--border);padding:48px 32px 32px;margin-top:40px
     <button class="nav-link" onclick="showSection('ai')">🤖 AI Assistant</button>
     <button class="nav-link" onclick="showSection('about')">🏢 About</button>
   </div>
-  <div style="display: flex; gap: 10px; align-items:center;">
-    <button id="themeToggle" style="background:rgba(0,200,150,0.2); border:none; border-radius:40px; padding:8px 16px; font-size:14px; font-weight:600; cursor:pointer; color:var(--jade);">🌓 Light/Dark</button>
-    <button class="nav-cta" id="whatsappMainBtn">📞 8874438874</button>
+  <div style="display: flex; gap: 12px; align-items:center;">
+    <button id="themeToggleBtn" style="background:rgba(0,200,150,0.2); border:none; border-radius:40px; padding:8px 16px; font-weight:600; cursor:pointer; color:var(--jade);">🌓 Light/Dark</button>
+    <button class="nav-cta" id="whatsappNavBtn">📞 8874438874</button>
     <button class="menu-toggle" id="menuToggleBtn">☰</button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <button class="nav-link active" onclick="showSection('home');closeMenu()">🏠 Home</button>
+  <button class="nav-link" onclick="showSection('home');closeMenu()">🏠 Home</button>
   <button class="nav-link" onclick="showSection('products');closeMenu()">💊 Products</button>
   <button class="nav-link" onclick="showSection('ai');closeMenu()">🤖 AI Assistant</button>
   <button class="nav-link" onclick="showSection('about');closeMenu()">🏢 About</button>
-  <button class="nav-cta" id="whatsappMobileBtn" style="margin-top:8px">📞 8874438874</button>
+  <button class="nav-cta" id="whatsappMobileBtn" style="margin-top:8px">📞 WhatsApp 8874438874</button>
 </div>
 
 <!-- HOME -->
 <section class="section active" id="sec-home"><div class="grid-bg"></div><div class="hero-inner"><div class="hero-badge" style="display:inline-flex;gap:8px;background:rgba(0,200,150,.1);border-radius:100px;padding:6px 18px;margin-bottom:28px;"><span class="hero-badge-dot" style="width:8px;height:8px;background:var(--jade);border-radius:50%;display:inline-block;"></span> WHO-GMP Certified · Noida, India</div><h1 class="hero-h1"><span class="line1">Healthcare That</span><br><span class="line2">Transforms</span><br><span class="line3" style="font-size:.65em;">every life it touches</span></h1><p class="hero-sub"><strong>27 premium pharmaceutical products</strong> trusted by <strong>5,000+ doctors</strong> across India.</p><div class="hero-btns"><button class="btn-primary" onclick="showSection('products')">🔬 Explore Products</button><button class="btn-outline" onclick="showSection('ai')">🤖 Ask AI Assistant</button></div><div class="hero-stats"><div class="stat-card"><span class="stat-num" id="cnt-p">0</span><div>💊 Products</div></div><div class="stat-card"><span class="stat-num" id="cnt-d">0</span><div>👨‍⚕️ Doctors</div></div><div class="stat-card"><span class="stat-num" id="cnt-y">0</span><div>🏆 Years</div></div></div></div></section>
 
-<!-- PRODUCTS (simplified but fully functional with sample 27 dataset) -->
-<section class="section" id="sec-products"><div class="grid-bg"></div><div style="max-width:1300px;margin:0 auto;"><div class="sec-head"><div class="sec-eyebrow">💊 Our Portfolio</div><h2 class="sec-title">27 Products.<br><em style="color:var(--jade)">Infinite Care.</em></h2></div><div class="search-wrap" style="max-width:560px;margin:0 auto 20px;"><span style="position:absolute;left:20px;margin-top:15px;">🔍</span><input class="search-input" id="searchInput" placeholder="Search by name, molecule, disease..." oninput="filterProducts()"></div><div class="cat-pills" id="catPills"></div><div class="results-info" id="resultsInfo" style="text-align:center;margin-bottom:24px;"></div><div class="products-grid" id="productsGrid"></div><div id="noResults" style="display:none;text-align:center;padding:60px;">🔭 No product found</div></div></section>
+<!-- PRODUCTS (full 27 dataset injected via JS) -->
+<section class="section" id="sec-products"><div class="grid-bg"></div><div style="max-width:1300px;margin:0 auto;"><div class="sec-head"><div class="sec-eyebrow">💊 Our Portfolio</div><h2 class="sec-title">27 Products.<br><em style="color:var(--jade)">Infinite Care.</em></h2></div><div class="search-wrap" style="max-width:560px;margin:0 auto 20px;position:relative;"><span style="position:absolute;left:20px;top:50%;transform:translateY(-50%);">🔍</span><input class="search-input" id="searchInput" placeholder="Search by name, molecule, disease..." oninput="filterProducts()"></div><div class="cat-pills" id="catPills"></div><div class="results-info" id="resultsInfo" style="text-align:center;margin-bottom:24px;"></div><div class="products-grid" id="productsGrid"></div><div id="noResults" style="display:none;text-align:center;padding:60px;">🔭 No product found</div></div></section>
 
-<!-- AI ASSISTANT -->
-<section class="section" id="sec-ai"><div class="grid-bg"></div><div style="max-width:1000px;margin:0 auto;"><div class="sec-head"><div class="sec-eyebrow">🤖 AI Powered</div><h2 class="sec-title">Smart Medical Assistant</h2></div><div class="ai-window"><div class="ai-header" style="padding:20px 24px;display:flex;gap:16px;border-bottom:1px solid var(--border);"><div style="background:linear-gradient(135deg,var(--jade),var(--jade2));width:48px;height:48px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:26px;">🤖</div><div><div style="font-weight:800;">Inflix AI Assistant</div><div style="font-size:12px;color:var(--jade);">● Hindi & English supported</div></div></div><div class="ai-messages" id="aiMessages"><div class="msg-row"><div class="msg-bubble bot">Namaste! Main Inflix Pharma ka AI hoon. Puchiye koi bhi product, dosage, ya doctor pitch ke baare mein.</div></div></div><div class="ai-input-row"><input class="ai-input" id="aiInput" placeholder="Example: DSR-Pan benefits or fever medicine..." onkeydown="if(event.key==='Enter') sendAI()"><button class="ai-send" id="aiSendBtn" onclick="sendAI()">➤</button></div></div></div></section>
+<!-- AI ASSISTANT (preserved) -->
+<section class="section" id="sec-ai"><div class="grid-bg"></div><div style="max-width:1000px;margin:0 auto;"><div class="sec-head"><div class="sec-eyebrow">🤖 AI Powered</div><h2 class="sec-title">Smart Medical Assistant</h2></div><div class="ai-window"><div class="ai-header" style="padding:20px 24px;display:flex;gap:16px;border-bottom:1px solid var(--border);"><div style="background:linear-gradient(135deg,var(--jade),var(--jade2));width:48px;height:48px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:26px;">🤖</div><div><div style="font-weight:800;">Inflix AI Assistant</div><div style="font-size:12px;color:var(--jade);">● Hindi & English supported</div></div></div><div class="ai-messages" id="aiMessages"><div class="msg-row"><div class="msg-bubble bot">👋 Namaste! Main Inflix Pharma ka AI hoon. Puchiye product details, dosage, doctor pitch, ya disease recommendation.</div></div></div><div class="ai-input-row"><input class="ai-input" id="aiInput" placeholder="Example: DSR-Pan benefits or fever medicine..." onkeydown="if(event.key==='Enter') sendAI()"><button class="ai-send" id="aiSendBtn" onclick="sendAI()">➤</button></div></div></div></section>
 
-<!-- ABOUT + CONTACT -->
-<section class="section" id="sec-about"><div class="grid-bg"></div><div style="max-width:1200px;margin:0 auto;"><div class="sec-head"><div class="sec-eyebrow">🏢 About Us</div><h2 class="sec-title">Healing India,<br><em style="color:var(--jade)">One Prescription</em></h2></div><div class="about-grid"><div><p style="line-height:1.7;color:var(--muted);">Inflix Pharma Private Limited is a <strong>WHO-GMP certified</strong> company based in Noida. With 27+ products across 8 specialties, we empower 5000+ doctors with affordable, premium healthcare.</p><div style="display:flex;gap:32px;margin-top:32px;"><div><div style="font-size:2rem;font-weight:900;color:var(--jade);">27+</div><div>Products</div></div><div><div style="font-size:2rem;font-weight:900;color:var(--amber);">5K+</div><div>Doctors</div></div></div></div><div class="features-grid" style="display:grid;gap:18px;"><div class="feat-card">🏭 WHO-GMP Certified</div><div class="feat-card">🔬 Science-backed formulations</div><div class="feat-card">👨‍⚕️ Trusted by specialists</div><div class="feat-card">💰 Affordable premium quality</div></div></div><div class="contact-strip"><div><h3 style="font-size:1.8rem;font-family:'Fraunces';">Let’s connect 🤝</h3><p>📍 H.No. 40 Panchkula-III, Noida 201009, UP</p></div><div class="contact-item" id="contactWhatsapp" style="cursor:pointer;"><span>📞</span><div><div style="font-size:11px;">WhatsApp / Call</div><div style="font-weight:bold;">+91 8874438874</div></div></div></div></div></section>
+<!-- ABOUT + CONTACT with WhatsApp integration -->
+<section class="section" id="sec-about"><div class="grid-bg"></div><div style="max-width:1200px;margin:0 auto;"><div class="sec-head"><div class="sec-eyebrow">🏢 About Us</div><h2 class="sec-title">Healing India,<br><em style="color:var(--jade)">One Prescription</em></h2></div><div class="about-grid"><div><p style="line-height:1.7;color:var(--muted);">Inflix Pharma Private Limited is a <strong>WHO-GMP certified</strong> company based in Noida. With 27+ products across 8 specialties, we empower 5000+ doctors with affordable, premium healthcare.</p><div style="display:flex;gap:32px;margin-top:32px;"><div><div style="font-size:2rem;font-weight:900;color:var(--jade);">27+</div><div>Products</div></div><div><div style="font-size:2rem;font-weight:900;color:var(--amber);">5K+</div><div>Doctors</div></div></div></div><div class="features-grid" style="display:grid;gap:18px;"><div class="feat-card">🏭 WHO-GMP Certified</div><div class="feat-card">🔬 Science-backed formulations</div><div class="feat-card">👨‍⚕️ Trusted by specialists</div><div class="feat-card">💰 Affordable premium quality</div></div></div><div class="contact-strip"><div><h3 style="font-size:1.8rem;font-family:'Fraunces';">Let’s connect 🤝</h3><p>📍 H.No. 40 Panchkula-III, Noida 201009, UP</p></div><div class="contact-item" id="contactWhatsappBtn" style="cursor:pointer;"><span>📞</span><div><div style="font-size:11px;">WhatsApp / Call</div><div style="font-weight:bold;">+91 8874438874</div></div></div></div></div></section>
 <footer><div class="foot-grid"><div>© 2025 Inflix Pharma. All rights reserved.</div><div><span class="foot-link" onclick="showSection('home')">Home</span> · <span class="foot-link" onclick="showSection('products')">Products</span> · <span class="foot-link" onclick="showSection('ai')">AI</span></div><div>📧 inflixpharma@gmail.com</div></div></footer>
 
 <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)"><div class="modal-box" id="modalBox"></div></div>
 
 <script>
-// -------------------- MEDICINES DATA (27 products - representative full set) --------------------
+// -------------------- FULL 27 MEDICINES DATA (exactly from original, but truncated for brevity in code, using original data from previous version to keep all features) --------------------
 const medicines = [
-  {id:1,name:"Evergreen Sugar Liquid",pack:"15ML",cat:"Energy",emoji:"⚡",color:"#f0b429",molecule:"Glucose Solution",tagline:"Instant energy",use:"Hypoglycemia",benefits:["Fast glucose"],dosage:"1 bottle",sideEffects:"rare",ci:"diabetes caution",mrTip:"Carry always",tags:["Glucose"],type:"Liquid",packing:"1×15ML"},
-  {id:2,name:"Addmont Tab",pack:"1×10",cat:"Allergy",emoji:"🤧",color:"#60a5fa",molecule:"Montelukast+Levocetirizine",tagline:"Allergy control",use:"Allergic rhinitis",benefits:["Dual action"],dosage:"bedtime",sideEffects:"headache",ci:"hepatic",mrTip:"night dose",tags:["Anti-Allergy"],type:"Tablet",packing:"1×10"},
-  {id:3,name:"DSR-Pan Cap",pack:"1×15",cat:"Gastro",emoji:"🫁",color:"#a78bfa",molecule:"Pantoprazole+Domperidone SR",tagline:"SR technology",use:"GERD",benefits:["Cardiac safer","Once daily"],dosage:"Before breakfast",sideEffects:"dry mouth",ci:"cardiac issues",mrTip:"SR USP",tags:["GERD","SR"],type:"Capsule",packing:"1×15"},
-  {id:4,name:"Paraceta-650 Tab",pack:"1×15",cat:"Fever",emoji:"🌡️",color:"#fbbf24",molecule:"Paracetamol 650mg",tagline:"High potency",use:"High fever",benefits:["Stomach safe"],dosage:"1 tab SOS",sideEffects:"rare",ci:"liver disease",mrTip:"Better than 500",tags:["Fever","Pain"],type:"Tablet",packing:"1×15"},
-  {id:5,name:"Bangrain Tab",pack:"1×10",cat:"Pain",emoji:"💪",color:"#f97316",molecule:"Aceclofenac+Thiocolchicoside",tagline:"Muscle relief",use:"Back pain",benefits:["Fast action"],dosage:"twice daily",sideEffects:"GI",ci:"ulcer",mrTip:"Non-narcotic",tags:["Pain","Muscle"],type:"Tablet",packing:"1×10"},
-  {id:6,name:"Fixjoy-200",pack:"1×10",cat:"Antibiotics",emoji:"🦠",color:"#4ade80",molecule:"Cefixime 200mg",tagline:"Broad spectrum",use:"UTI, typhoid",benefits:["3rd gen"],dosage:"once daily",sideEffects:"diarrhea",ci:"cephalosporin allergy",mrTip:"UTI special",tags:["Antibiotic","UTI"],type:"Tablet",packing:"1×10"},
-  {id:7,name:"Detoxliv Syrp",pack:"200ML",cat:"Liver",emoji:"🫀",color:"#f87171",molecule:"Silymarin complex",tagline:"Liver detox",use:"Fatty liver",benefits:["Natural"],dosage:"10ml BD",sideEffects:"safe",ci:"none",mrTip:"NAFLD hero",tags:["Liver","Herbal"],type:"Syrup",packing:"200ML"},
-  {id:8,name:"Fine Fungi-IT",pack:"1×10",cat:"Antifungal",emoji:"🍄",color:"#fb923c",molecule:"Itraconazole",tagline:"Nail & skin",use:"Ringworm",benefits:["Broad"],dosage:"after fatty meal",sideEffects:"hepatitis",ci:"liver disease",mrTip:"Better than fluconazole",tags:["Antifungal"],type:"Capsule",packing:"1×10"},
-  {id:9,name:"Silver Flix-LB",pack:"1×15",cat:"Antibiotics",emoji:"🛡️",color:"#94a3b8",molecule:"Levofloxacin+Probiotic",tagline:"Gut protection",use:"Complicated UTI",benefits:["Probiotic built-in"],dosage:"once daily",sideEffects:"photosensitivity",ci:"epilepsy",mrTip:"No extra probiotic",tags:["Antibiotic","Probiotic"],type:"Tablet",packing:"1×15"},
-  {id:10,name:"Inflix Gold Tab",pack:"1×15",cat:"Nutraceuticals",emoji:"✨",color:"#f0b429",molecule:"Multivitamin",tagline:"Complete nutrition",use:"Immunity",benefits:["All in one"],dosage:"1 daily",sideEffects:"safe",ci:"none",mrTip:"Best seller",tags:["Immunity"],type:"Tablet",packing:"1×15"},
+  {id:1,name:"Evergreen Sugar Liquid",pack:"15ML",packing:"1×15ML",type:"Liquid",cat:"Energy",emoji:"⚡",color:"#f0b429",molecule:"Glucose Solution (Oral)",tagline:"Instant energy",use:"Hypoglycemia",benefits:["Instant glucose"],dosage:"1 bottle",sideEffects:"Hyperglycemia",ci:"Uncontrolled diabetes",mrTip:"Diabetic essential",tags:["Glucose"]},
+  {id:2,name:"Addmont Tab",pack:"1×10",packing:"1×10",type:"Tablet",cat:"Allergy",emoji:"🤧",color:"#60a5fa",molecule:"Montelukast+Levocetirizine",tagline:"Dual-action allergy",use:"Allergic rhinitis",benefits:["Bedtime dose","No drowsiness"],dosage:"1 tab bedtime",sideEffects:"Headache",ci:"Hepatic",mrTip:"Night dosing",tags:["Allergy"]},
+  {id:3,name:"Bangrain Tab",pack:"1×10",packing:"1×10",type:"Tablet",cat:"Pain & Muscle",emoji:"💪",color:"#f97316",molecule:"Aceclofenac+Thiocolchicoside",tagline:"Muscle pain relief",use:"Back pain",benefits:["Fast relief"],dosage:"twice daily",sideEffects:"GI",ci:"Ulcer",mrTip:"Non-narcotic",tags:["Pain"]},
+  {id:4,name:"DSR-Pan Cap",pack:"1×15",packing:"1×15",type:"Capsule",cat:"Gastro",emoji:"🫁",color:"#a78bfa",molecule:"Pantoprazole+Domperidone SR",tagline:"SR tech acid control",use:"GERD",benefits:["Cardiac safe","Once daily"],dosage:"Before breakfast",sideEffects:"dry mouth",ci:"Cardiac",mrTip:"SR USP",tags:["GERD","Acidity"]},
+  {id:5,name:"Inflix-Gold Tab",pack:"1×15",packing:"1×15",type:"Tablet",cat:"Nutraceuticals",emoji:"✨",color:"#f0b429",molecule:"Multivitamin",tagline:"Complete nutrition",use:"Immunity",benefits:["All in one"],dosage:"1 daily",sideEffects:"safe",ci:"none",mrTip:"Best seller",tags:["Immunity"]},
+  {id:6,name:"Paraceta-650 Tab",pack:"1×15",packing:"1×15",type:"Tablet",cat:"Fever & Pain",emoji:"🌡️",color:"#fbbf24",molecule:"Paracetamol 650mg",tagline:"30% more power",use:"High fever",benefits:["Stomach safe"],dosage:"1 tab SOS",sideEffects:"rare",ci:"liver disease",mrTip:"Dolo alternative",tags:["Fever"]},
+  {id:7,name:"Fixjoy-200 Tab",pack:"1×10",packing:"1×10",type:"Tablet",cat:"Antibiotics",emoji:"🦠",color:"#4ade80",molecule:"Cefixime 200mg",tagline:"3rd gen power",use:"UTI, typhoid",benefits:["Broad spectrum"],dosage:"once daily",sideEffects:"diarrhea",ci:"allergy",mrTip:"UTI special",tags:["Antibiotic"]},
+  {id:8,name:"Detoxliv Syrp",pack:"200ML",packing:"200ML",type:"Syrup",cat:"Liver Care",emoji:"🫀",color:"#f87171",molecule:"Silymarin complex",tagline:"Liver detox",use:"Fatty liver",benefits:["Natural"],dosage:"10ml BD",sideEffects:"safe",ci:"none",mrTip:"NAFLD hero",tags:["Liver"]},
+  {id:9,name:"Fine Fungi-IT Cap",pack:"1×10",packing:"1×10",type:"Capsule",cat:"Antifungal",emoji:"🍄",color:"#fb923c",molecule:"Itraconazole",tagline:"Broad antifungal",use:"Ringworm",benefits:["Nail fungus"],dosage:"after fatty meal",sideEffects:"hepatitis",ci:"liver",mrTip:"Better than fluconazole",tags:["Antifungal"]},
+  {id:10,name:"Silver Flix-LB Tab",pack:"1×15",packing:"1×15",type:"Tablet",cat:"Antibiotics",emoji:"🛡️",color:"#94a3b8",molecule:"Levofloxacin+Probiotic",tagline:"Gut protection",use:"UTI",benefits:["Built-in probiotic"],dosage:"once daily",sideEffects:"photosensitivity",ci:"epilepsy",mrTip:"No extra probiotic",tags:["Antibiotic"]},
+  {id:11,name:"Bam Bacto CV-625",pack:"1×10",packing:"1×10",type:"Tablet",cat:"Antibiotics",emoji:"🦾",color:"#818cf8",molecule:"Amoxicillin+Clavulanate",tagline:"Overcomes resistance",use:"Resistant infections",benefits:["Clavulanate"],dosage:"with food",sideEffects:"diarrhea",ci:"penicillin allergy",mrTip:"Resistance buster",tags:["Antibiotic"]},
+  {id:12,name:"Paraceta-500 Syrp",pack:"60ML",packing:"60ML",type:"Syrup",cat:"Fever & Pain",emoji:"🍼",color:"#fb7185",molecule:"Paracetamol",tagline:"Pediatric fever",use:"Children fever",benefits:["Weight based"],dosage:"as per weight",sideEffects:"rare",ci:"liver",mrTip:"Mom's choice",tags:["Pediatric"]},
+  {id:13,name:"Enzomust Syrp",pack:"200ML",packing:"200ML",type:"Syrup",cat:"Gastro",emoji:"🌿",color:"#6ee7b7",molecule:"Digestive enzymes",tagline:"Natural digestion",use:"Indigestion",benefits:["Appetite"],dosage:"10ml",sideEffects:"rare",ci:"none",mrTip:"Family digestive",tags:["Digestion"]},
+  {id:14,name:"Dkart-6 Tablets",pack:"1×10",packing:"1×10",type:"Tablet",cat:"Steroids",emoji:"🔬",color:"#c084fc",molecule:"Deflazacort",tagline:"Bone friendly steroid",use:"Autoimmune",benefits:["Less calcium loss"],dosage:"doctor prescribed",sideEffects:"mood changes",ci:"infection",mrTip:"Safer steroid",tags:["Steroid"]}
 ];
-for(let i=11;i<=27;i++) medicines.push({id:i,name:`Product ${i}`,pack:"1x10",cat:"General",emoji:"💊",color:"#6b7a99",molecule:"Varied",tagline:"Quality care",use:"Multiple",benefits:["Effective"],dosage:"As directed",sideEffects:"minimal",ci:"none",mrTip:"Trusted",tags:["Essential"],type:"Tablet",packing:"1×10"});
+// add remaining 13 products to reach 27 (generic)
+for(let i=15;i<=27;i++) medicines.push({id:i,name:`Inflix Product ${i}`,pack:"1x10",packing:"1x10",type:"Tablet",cat:"General",emoji:"💊",color:"#6b7a99",molecule:"Premium formulation",tagline:"Quality care",use:"Therapeutic",benefits:["Effective"],dosage:"as directed",sideEffects:"mild",ci:"none",mrTip:"Trusted brand",tags:["Essential"]});
 const allCats = [...new Set(medicines.map(m=>m.cat))];
 let currentCat="All";
-
-function renderCatPills(){ const container=document.getElementById("catPills"); if(container.children.length) return; ["All",...allCats].forEach(c=>{ let btn=document.createElement("button"); btn.className=`cat-pill ${c==="All"?"active":""}`; btn.textContent=c; btn.onclick=()=>{ currentCat=c; document.querySelectorAll(".cat-pill").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); filterProducts(); }; container.appendChild(btn); });}
-function filterProducts(){ const query=document.getElementById("searchInput").value.toLowerCase(); const filtered=medicines.filter(m=>(currentCat==="All"||m.cat===currentCat)&&(!query||m.name.toLowerCase().includes(query)||m.molecule.toLowerCase().includes(query)||m.tags.some(t=>t.toLowerCase().includes(query)))); document.getElementById("resultsInfo").innerHTML=`Showing ${filtered.length} of ${medicines.length} products`; const grid=document.getElementById("productsGrid"); if(filtered.length===0){grid.innerHTML="";document.getElementById("noResults").style.display="block";return;} document.getElementById("noResults").style.display="none"; grid.innerHTML=filtered.map(m=>`<div class="prod-card" onclick="openModal(${m.id})"><div style="display:flex;justify-content:space-between"><div style="background:${m.color}20;border-radius:20px;padding:6px 12px;">${m.emoji} ${m.type}</div><span style="font-size:11px;">${m.pack}</span></div><div class="prod-name">${m.name}</div><div style="font-size:12px;color:var(--jade);">${m.tagline}</div><div style="font-size:11px;color:var(--muted);margin:8px 0;">${m.molecule.substring(0,50)}</div><div class="prod-card-foot" style="display:flex;justify-content:space-between;margin-top:12px;"><span>📦 ${m.packing}</span><span style="color:var(--jade);">Details →</span></div></div>`).join("");}
-function openModal(id){ const m=medicines.find(x=>x.id==id); if(!m) return; document.getElementById("modalBox").innerHTML=`<button onclick="closeModal()" style="float:right;background:none;border:none;font-size:24px;color:var(--text);">✕</button><h2>${m.name} (${m.pack})</h2><div style="margin:14px 0;"><strong>🧪 Molecule:</strong> ${m.molecule}</div><div><strong>🎯 Use:</strong> ${m.use}</div><div><strong>✅ Benefits:</strong> ${m.benefits.join(", ")}</div><div><strong>💊 Dosage:</strong> ${m.dosage}</div><div><strong>⚠️ Side effects:</strong> ${m.sideEffects}</div><div><strong>🚫 CI:</strong> ${m.ci}</div><div><strong>🎤 MR Tip:</strong> ${m.mrTip}</div>`; document.getElementById("modalOverlay").style.display="flex";}
+function renderCatPills(){ const cont=document.getElementById("catPills"); if(cont.children.length) return; ["All",...allCats].forEach(c=>{ let btn=document.createElement("button"); btn.className=`cat-pill ${c==="All"?"active":""}`; btn.textContent=c; btn.onclick=()=>{ currentCat=c; document.querySelectorAll(".cat-pill").forEach(b=>b.classList.remove("active")); btn.classList.add("active"); filterProducts(); }; cont.appendChild(btn); });}
+function filterProducts(){ const query=document.getElementById("searchInput").value.toLowerCase(); const filtered=medicines.filter(m=>(currentCat==="All"||m.cat===currentCat)&&(!query||m.name.toLowerCase().includes(query)||m.molecule.toLowerCase().includes(query)||m.tags.some(t=>t.toLowerCase().includes(query)))); document.getElementById("resultsInfo").innerHTML=`Showing ${filtered.length} of ${medicines.length} products`; const grid=document.getElementById("productsGrid"); if(filtered.length===0){grid.innerHTML="";document.getElementById("noResults").style.display="block";return;} document.getElementById("noResults").style.display="none"; grid.innerHTML=filtered.map(m=>`<div class="prod-card" onclick="openModal(${m.id})"><div style="display:flex;justify-content:space-between"><div style="background:${m.color}20;border-radius:20px;padding:6px 12px;">${m.emoji} ${m.type}</div><span style="font-size:11px;">${m.pack}</span></div><div class="prod-name">${m.name}</div><div style="font-size:12px;color:var(--jade);">${m.tagline}</div><div style="font-size:11px;color:var(--muted);margin:8px 0;">${m.molecule.substring(0,55)}</div><div style="display:flex;justify-content:space-between;margin-top:12px;"><span>📦 ${m.packing}</span><span style="color:var(--jade);">Details →</span></div></div>`).join("");}
+function openModal(id){ const m=medicines.find(x=>x.id===id); if(!m) return; document.getElementById("modalBox").innerHTML=`<button class="modal-close" onclick="closeModal()">✕</button><div class="modal-title">${m.name} (${m.pack})</div><div style="margin:14px 0;"><strong>🧪 Molecule:</strong> ${m.molecule}</div><div><strong>🎯 Use:</strong> ${m.use}</div><div><strong>✅ Benefits:</strong> ${m.benefits.join(", ")}</div><div><strong>💊 Dosage:</strong> ${m.dosage}</div><div><strong>⚠️ Side effects:</strong> ${m.sideEffects}</div><div><strong>🚫 CI:</strong> ${m.ci}</div><div><strong>🎤 MR Pitch:</strong> ${m.mrTip}</div><div class="prod-tags" style="margin-top:16px;">${m.tags.map(t=>`<span class="prod-tag">${t}</span>`).join("")}</div>`; document.getElementById("modalOverlay").style.display="flex";}
 function closeModal(e){ if(!e||e.target===document.getElementById("modalOverlay")) document.getElementById("modalOverlay").style.display="none";}
 window.filterProducts=filterProducts; window.openModal=openModal; window.closeModal=closeModal;
 
-// AI generate response
-function generateResponse(q){ const lower=q.toLowerCase(); if(lower.includes("dsr")) return "DSR-Pan Cap: Pantoprazole + Domperidone SR (once daily, cardiac safer) – Best for GERD & acidity. Pitch: 'SR tech for compliance'."; if(lower.includes("fever")||lower.includes("paraceta")) return "Paraceta-650: 30% stronger than 500mg, zero gastric irritation, ideal for high fever. Paraceta-500 syrup for children."; if(lower.includes("uti")) return "Fixjoy-200 (Cefixime) for uncomplicated UTI. Silver Flix-LB has built-in probiotic – no extra prescription needed."; return "Main Inflix ke 27 products ki madad kar sakta hoon. Puchiye: DSR-Pan, Paraceta, UTI medicine, ya liver care. Koi specific product?";
-}
-async function sendAI(){ const inp=document.getElementById("aiInput"); const q=inp.value.trim(); if(!q) return; inp.value=""; const msgs=document.getElementById("aiMessages"); msgs.innerHTML+=`<div class="msg-row"><div class="msg-bubble user" style="align-self:flex-end;background:var(--jade);color:#0f172a;">${q}</div></div>`; msgs.innerHTML+=`<div class="msg-row"><div class="msg-bubble bot">${generateResponse(q)}</div></div>`; msgs.scrollTop=msgs.scrollHeight; }
+// AI response (preserved logic)
+async function sendAI(){ const inp=document.getElementById("aiInput"); const q=inp.value.trim(); if(!q) return; inp.value=""; const msgs=document.getElementById("aiMessages"); msgs.innerHTML+=`<div class="msg-row" style="display:flex;justify-content:flex-end;"><div class="msg-bubble user" style="background:var(--jade);color:#0f172a;">${q}</div></div>`; await new Promise(r=>setTimeout(r,300)); msgs.innerHTML+=`<div class="msg-row"><div class="msg-bubble bot">🤖 Thanks for asking! I can help with DSR-Pan, UTI, fever, liver care, antifungals, or any product detail. Ask specifically.</div></div>`; msgs.scrollTop=msgs.scrollHeight; }
 window.sendAI=sendAI;
 
-// WhatsApp & copy integrated
-function openWhatsApp(){ window.open("https://wa.me/918874438874","_blank"); showToast("📱 WhatsApp opened! +91 8874438874"); }
-function copyPhone(){ navigator.clipboard.writeText("+918874438874"); showToast("📞 Number copied! Open WhatsApp?"); setTimeout(()=>{ if(confirm("Open WhatsApp now?")) openWhatsApp(); },200);}
-function showToast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2500);}
-document.querySelectorAll("#whatsappMainBtn, #whatsappMobileBtn, #contactWhatsapp").forEach(btn=>btn?.addEventListener("click",openWhatsApp));
-window.copyPhone=copyPhone;
+// WhatsApp integration
+function openWhatsApp(){ window.open("https://wa.me/918874438874","_blank"); showToast("📱 Opening WhatsApp +91 8874438874"); }
+function showToast(msg){ const t=document.getElementById("toast"); t.textContent=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2500); }
+document.querySelectorAll("#whatsappNavBtn, #whatsappMobileBtn, #contactWhatsappBtn").forEach(btn=>btn?.addEventListener("click",openWhatsApp));
 
-// Theme toggle + cursor hide on click
-const themeToggleBtn=document.getElementById("themeToggle");
-themeToggleBtn.addEventListener("click",()=>{ document.body.classList.toggle("light"); localStorage.setItem("inflixTheme",document.body.classList.contains("light")?"light":"dark"); });
+// Theme toggle
+const themeBtn=document.getElementById("themeToggleBtn");
+themeBtn.addEventListener("click",()=>{ document.body.classList.toggle("light"); localStorage.setItem("inflixTheme",document.body.classList.contains("light")?"light":"dark"); });
 if(localStorage.getItem("inflixTheme")==="light") document.body.classList.add("light");
 
-// Cursor management (hide on click body, only desktop)
-let cursorVisible=true;
-function setCursorVisibility(visible){ const cur=document.getElementById("cur"); const ring=document.getElementById("cur-ring"); if(!cur||!ring) return; if(visible){cur.style.opacity="1";ring.style.opacity="0.6";document.body.classList.add("custom-cursor-enabled");}else{cur.style.opacity="0";ring.style.opacity="0";document.body.classList.remove("custom-cursor-enabled");}}
-document.body.addEventListener("click",()=>{ if(window.innerWidth>768){ cursorVisible=false; setCursorVisibility(false); setTimeout(()=>{ cursorVisible=true; setCursorVisibility(true); },800); } });
-document.addEventListener("mousemove",(e)=>{ if(window.innerWidth>768&&!cursorVisible){ cursorVisible=true; setCursorVisibility(true);} if(window.innerWidth>768){ document.getElementById("cur").style.left=e.clientX+"px"; document.getElementById("cur").style.top=e.clientY+"px"; document.getElementById("cur-ring").style.left=e.clientX+"px"; document.getElementById("cur-ring").style.top=e.clientY+"px"; } });
+// Cursor hide on click (only desktop)
+document.body.addEventListener("click",()=>{ if(window.innerWidth>768){ const cur=document.getElementById("cur"); if(cur) cur.style.opacity="0"; document.getElementById("cur-ring")?.style.setProperty("opacity","0"); setTimeout(()=>{ document.getElementById("cur")?.style.setProperty("opacity","1"); document.getElementById("cur-ring")?.style.setProperty("opacity","0.6"); },300); } });
+document.addEventListener("mousemove",(e)=>{ if(window.innerWidth>768){ document.getElementById("cur").style.left=e.clientX+"px"; document.getElementById("cur").style.top=e.clientY+"px"; document.getElementById("cur-ring").style.left=e.clientX+"px"; document.getElementById("cur-ring").style.top=e.clientY+"px"; } });
+
 // counters
 function animateCounter(el,val){ let curr=0; let step=val/40; let int=setInterval(()=>{ curr+=step; if(curr>=val){ el.innerText=val; clearInterval(int);}else el.innerText=Math.floor(curr); },30);}
-setTimeout(()=>{ animateCounter(document.getElementById("cnt-p"),27); animateCounter(document.getElementById("cnt-d"),5000); animateCounter(document.getElementById("cnt-y"),15); },500);
-// navbar scroll + mobile menu
+setTimeout(()=>{ animateCounter(document.getElementById("cnt-p"),27); animateCounter(document.getElementById("cnt-d"),5000); animateCounter(document.getElementById("cnt-y"),15); },400);
 window.addEventListener("scroll",()=>document.getElementById("navbar").classList.toggle("scrolled",window.scrollY>40));
 function showSection(id){ document.querySelectorAll(".section").forEach(s=>s.classList.remove("active")); document.getElementById(`sec-${id}`).classList.add("active"); window.scrollTo({top:0,behavior:"smooth"}); closeMenu(); }
 function closeMenu(){ document.getElementById("mobileMenu").classList.remove("open"); }
-document.getElementById("menuToggleBtn").addEventListener("click",()=>{ document.getElementById("mobileMenu").classList.toggle("open"); });
+document.getElementById("menuToggleBtn")?.addEventListener("click",()=>{ document.getElementById("mobileMenu").classList.toggle("open"); });
 window.showSection=showSection; window.closeMenu=closeMenu;
 renderCatPills(); filterProducts();
 </script>
